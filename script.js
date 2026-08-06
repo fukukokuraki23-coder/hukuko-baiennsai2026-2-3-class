@@ -221,7 +221,10 @@ function sanitizeReservationNames(table) {
         return table.headers.map((_, index) => {
             const value = row[index] || '';
             if (!reservationColumns.includes(index)) return value;
-            return value.trim() ? RESERVATION_LABEL : '';
+            // 変更: 予約セルの内容に「〇」や類似の丸文字が含まれる場合のみ封鎖ラベルを表示します。
+            const v = value.trim();
+            const hasCircle = /[〇○◯]/.test(v);
+            return hasCircle ? RESERVATION_LABEL : '';
         });
     });
 
