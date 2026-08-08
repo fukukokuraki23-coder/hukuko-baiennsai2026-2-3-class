@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学校23不思議 - 梅苑祭 2年3組</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blood: { 500: '#991b1b', 600: '#7f1d1d', 900: '#450a0a' },
+                        dark: '#020617',
+                    },
+                    fontFamily: {
+                        serif: ['"Shippori Mincho"', 'serif'],
+                        mono: ['"Fira Code"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700;800&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-gray-300 font-serif min-h-screen relative overflow-x-hidden leading-relaxed">
+
+    <!-- SVG 空間歪みフィルター -->
+    <svg width="0" height="0" style="position:absolute;z-index:-1;">
+        <filter id="spatial-warp">
+            <feTurbulence type="fractalNoise" baseFrequency="0.002" numOctaves="2" result="noise">
+                <animate attributeName="baseFrequency" values="0.002;0.006;0.002" dur="15s" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
+
+    <div class="bg-container dark-breath">
+        <!-- 黒板のうっすらとした数式（背景画像と一緒に動く） -->
+        <div class="blackboard-math select-none pointer-events-none" aria-hidden="true">
+            <div class="math-block">
+                R<sub>μν</sub> - ½g<sub>μν</sub>R = 8πG T<sub>μν</sub><br>
+                ∇<sub>μ</sub>T<sup>μν</sup> = 0<br><br>
+                dp/dt = F, dE = F dx = v dp<br>
+                E = ∫ v d(γm<sub>0</sub>v) = γm<sub>0</sub>c<sup>2</sup> ∴ E=mc<sup>2</sup><br><br>
+                S<sub>BH</sub> = k<sub>B</sub>A / 4ℓ<sub>P</sub><sup>2</sup><br>
+                S(ρ) = -Tr(ρ ln ρ)
+            </div>
+        </div>
+    </div>
+    <div class="bg-container-2"></div>
+    <div class="dark-overlay"></div>
+    <div class="noise-bg"></div>
+
+    <!-- スキャンライン -->
+    <div class="scanlines"></div>
+    <!-- 白い薄靄の円 -->
+    <div class="white-orb" style="top: 7%; left: 8%; width: 42px; height: 42px; animation-delay: -1s;"></div>
+    <div class="white-orb" style="top: 18%; right: 16%; width: 118px; height: 118px; animation-delay: -8s;"></div>
+    <div class="white-orb" style="top: 35%; left: 4%; width: 76px; height: 76px; animation-delay: -4s;"></div>
+    <div class="white-orb" style="top: 49%; right: 8%; width: 54px; height: 54px; animation-delay: -12s;"></div>
+    <div class="white-orb" style="bottom: 27%; left: 18%; width: 142px; height: 142px; animation-delay: -16s;"></div>
+    <div class="white-orb" style="bottom: 16%; right: 24%; width: 88px; height: 88px; animation-delay: -6s;"></div>
+    <div class="white-orb" style="top: 64%; left: 44%; width: 34px; height: 34px; animation-delay: -10s;"></div>
+    <div class="white-orb" style="bottom: 8%; left: 7%; width: 106px; height: 106px; animation-delay: -20s;"></div>
+    <div class="spectral-shadow" style="top: 18%; left: 4%; width: 90px; height: 260px; animation-delay: -3s;"></div>
+    <div class="spectral-shadow" style="top: 42%; right: 6%; width: 120px; height: 330px; animation-delay: -11s;"></div>
+    <div class="spectral-shadow" style="bottom: 8%; left: 54%; width: 70px; height: 220px; animation-delay: -17s;"></div>
+
+    <!-- ========== ヒーロー ========== -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center fade-in z-10 px-6">
+        <div class="text-center w-full max-w-md mx-auto">
+            <p class="text-gray-500 text-[10px] tracking-[0.4em] mb-8 font-mono">梅苑祭　２年３組</p>
+
+            <h1 class="text-5xl font-extrabold text-white mb-3 tracking-[0.15em] drop-shadow-2xl title-bleed-shiver leading-tight" data-text="学校23不思議">
+                学校<span class="text-blood-500">23</span>不思議
+            </h1>
+
+<p class="text-haunted-dance leading-relaxed">その教室には、まだ誰も知らない<br>「うわさ」が残っている。</p>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+            <span class="text-gray-600 text-[10px] tracking-[0.3em]">SCROLL</span>
+            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7"></path></svg>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+
+        <!-- ========== 導入 ========== -->
+        <section class="px-6 py-16 fade-in">
+            <div class="max-w-md mx-auto text-center leading-[2.5] tracking-wider text-sm text-gray-400 intro-garble-section" style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">
+                <p>噂を確かめるため踏み込んだいつもの教室。</p>
+                <p>しかし、そこは「私の知っている世界」ではなかった。</p>
+                <p>いつも過ごしている空間のはずなのに、何故か違和感がある。</p>
+                <p>窓の外は黄昏時のまま、いつまでも暮れ終わらない。</p>
+                <p class="mt-6 text-gray-300 text-base font-bold">——あなたは、ここから出られるだろうか。</p>
+            </div>
+        </section>
+
+        <div class="divider-line fade-in"></div>
+
+        <!-- ========== PROLOGUE ========== -->
+        <section class="px-6 py-12 fade-in">
+            <div class="max-w-lg mx-auto">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-[2px] bg-blood-500"></div>
+                    <h2 class="text-lg font-bold text-white tracking-[0.2em]">PROLOGUE</h2>
+                </div>
+
+                <div class="panel p-6 leading-[2.2] tracking-wider text-gray-300 text-sm space-y-5 relative">
+                    <div class="absolute top-0 right-0 w-10 h-10 border-t border-r border-blood-900/40 m-1"></div>
+                    <div class="absolute bottom-0 left-0 w-10 h-10 border-b border-l border-blood-900/40 m-1"></div>
+                    
+                    <p class="text-haunted-dance inline-block">「ねぇ、知ってる？　この学校のこんな話を」</p>
+
+                    <p>その噂は風の様に流れ、いつしか消えていった——<span class="text-blood-500 font-bold glitch-hover cursor-default inline-block">『23の不思議』</span>。</p>
+
+                    <p>好奇心に誘われるまま扉の向こうに踏み込んだあなたの前に広がっていたのは、見慣れた机と椅子、日直の名前が書かれた黒板、壁の時計——何もかもがいつもの教室のはずだった。</p>
+
+                    <p>けれど、カーテンは風もないのにたなびき、<br>
+                    窓の向こうの景色はどこか<ruby>歪<rt>ひず</rt></ruby>んでいて、<br>
+                    黒板に書かれた数式の答えが、さっきと違う。</p>
+
+                    <p>まるで、この教室だけが世界の法則から<br>切り離されてしまったかのように。</p>
+
+<p class="text-haunted-dance font-bold mt-2 tracking-[0.15em] drop-shadow-md leading-relaxed">
+                        教室に散らばった矛盾を、ひとつずつ解け。<br>時間は、もう巻き戻せない。
+</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider-line fade-in"></div>
+
+        <!-- ========== 予約状況 ========== -->
+        <section class="px-6 py-12 fade-in" id="schedule-section">
+            <div class="max-w-3xl mx-auto">
+                <div class="grid grid-cols-2 gap-4 mb-12">
+                    <div class="panel p-5 text-center relative overflow-hidden border-blood-900/50 gravity-warp" id="stat-entered">
+                        <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blood-500 to-transparent opacity-50"></div>
+                        <h3 class="text-gray-400 text-[10px] tracking-[0.15em] mb-3">扉をくぐりし者</h3>
+                        <div class="text-4xl font-bold text-blood-500 count-up font-mono" data-target="86">0</div>
+                    </div>
+                    <div class="panel p-5 text-center relative overflow-hidden gravity-warp" id="stat-remaining">
+                        <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-50"></div>
+                        <h3 class="text-gray-400 text-[10px] tracking-[0.15em] mb-3">未だ踏み入れざる者</h3>
+                        <div class="text-4xl font-bold text-white count-up font-mono" data-target="14">0</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-[2px] bg-gray-600"></div>
+                    <h2 class="text-lg font-bold text-white tracking-[0.2em]">SCHEDULE</h2>
+                </div>
+                <p class="text-[10px] text-gray-500 mb-4 tracking-widest">——時間割のように、この世界にも順番がある。</p>
+                <div id="sync-status" class="text-[9px] text-gray-500 font-mono mb-3 tracking-widest"></div>
+
+                <div class="overflow-x-auto gravity-warp" id="schedule-table-wrap">
+                    <table class="w-full text-left border-collapse panel">
+                        <thead>
+                            <tr class="text-gray-500 text-[10px] tracking-widest border-b border-gray-800 bg-black/30">
+                                <th class="py-3 px-3 font-normal">日付</th>
+                                <th class="py-3 px-3 font-normal">時刻</th>
+                                <th class="py-3 px-3 font-normal">教室</th>
+                                <th class="py-3 px-3 font-normal text-right">予約確認</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body" class="divide-y divide-gray-800/50 text-sm">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider-line fade-in"></div>
+
+        <!-- ========== RULES ========== -->
+        <section class="px-6 py-12 fade-in">
+            <div class="max-w-lg mx-auto">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-[2px] bg-blood-500"></div>
+                    <h2 class="text-lg font-bold text-white tracking-[0.2em]">RULES</h2>
+                </div>
+
+                <div class="panel p-6">
+                    <ul class="space-y-5 text-sm text-gray-300 leading-relaxed">
+                        <li class="flex items-start">
+                            <span class="text-blood-500 font-bold mr-3 font-mono shrink-0 text-base">I.</span> 
+                            <div>与えられた時間は<span class="glitch-hover inline-block font-bold text-white">15分</span>。<br>
+                            <span class="text-gray-500 text-xs">それは砂時計の砂ではなく、この部屋が保てる最後の均衡。</span></div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blood-500 font-bold mr-3 font-mono shrink-0 text-base">II.</span> 
+                            <div>各教室に眠る「不可解」を解き明かすこと。<br>
+                            <span class="text-gray-500 text-xs">散らばる謎の数々が、帰り道の鍵になる。</span></div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blood-500 font-bold mr-3 font-mono shrink-0 text-base">III.</span> 
+                            <div>教室内では決して走らないこと。<br>
+                            <span class="text-gray-500 text-xs">この空間は、あなたが思うより<ruby>脆<rt>もろ</rt></ruby>い。</span></div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blood-500 font-bold mr-3 font-mono shrink-0 text-base">IV.</span> 
+                            <div>案ずる必要はない。ここにある謎は噓をつかない。<br>
+                            <span class="text-gray-500 text-xs">必要なのは、恐怖に立ち向かえる仲間と、冷徹な頭脳だけだ。</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider-line fade-in"></div>
+
+        <!-- ========== MAP ========== -->
+        <section class="px-6 py-12 fade-in gravity-warp" id="map-section">
+            <div class="max-w-lg mx-auto">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-[2px] bg-gray-600"></div>
+                    <h2 class="text-lg font-bold text-white tracking-[0.2em]">MAP</h2>
+                </div>
+
+                <div class="panel p-5 gravity-warp" id="map-panel">
+                    <p class="text-[10px] text-gray-500 font-mono mb-4 text-center tracking-widest">23の館 — 隔離エリア見取り図</p>
+                    <div class="relative w-full aspect-[4/3] border border-gray-700 p-3 flex flex-col gap-3">
+                        <div class="absolute -top-2.5 left-2.5 bg-black px-2 text-[10px] text-gray-400 tracking-widest">入口</div>
+                        
+                        <div class="flex-1 flex gap-3">
+                            <div class="map-cell glitch-hover" data-classroom="図書室" style="--blood:0.2">
+                                <span class="text-white font-bold text-base font-mono">D</span>
+                                <span class="text-[11px] text-gray-400 mt-0.5">図書室</span>
+                                <span class="difficulty-stars">☆</span>
+                            </div>
+                            <div class="map-cell glitch-hover" data-classroom="理科室" style="--blood:0.4">
+                                <span class="text-white font-bold text-base font-mono">A</span>
+                                <span class="text-[11px] text-gray-400 mt-0.5">理科室</span>
+                                <span class="difficulty-stars">☆☆</span>
+                            </div>
+                        </div>
+                        <div class="flex-1 flex gap-3">
+                            <div class="map-cell glitch-hover" data-classroom="美術室" style="--blood:0.6">
+                                <span class="text-white font-bold text-base font-mono">C</span>
+                                <span class="text-[11px] text-gray-400 mt-0.5">美術室</span>
+                                <span class="difficulty-stars">☆☆☆</span>
+                            </div>
+                            <div class="map-cell glitch-hover" data-classroom="音楽室" style="--blood:1">
+                                <span class="text-white font-bold text-base font-mono">B</span>
+                                <span class="text-[11px] text-gray-400 mt-0.5">音楽室</span>
+                                <span class="difficulty-stars">☆☆☆☆☆</span>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute -top-2.5 right-2.5 bg-black px-2 text-[10px] text-blood-500 font-bold glitch-hover tracking-widest">脱出口</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider-line fade-in"></div>
+
+        <!-- ========== CLASSROOM INTRO ========== -->
+        <section class="px-6 py-12 fade-in gravity-warp" id="classroom-intro-section">
+            <div class="max-w-lg mx-auto">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-[2px] bg-gray-600"></div>
+                    <h2 class="text-lg font-bold text-white tracking-[0.2em]">CLASSROOM</h2>
+                </div>
+                <p class="text-[10px] text-gray-500 mb-6 tracking-widest text-center">——それぞれの教室に眠る難易度と試練。</p>
+
+                <div class="relative mb-8">
+                    <div class="absolute inset-0 bg-gradient-to-b from-blood-500/5 via-transparent to-transparent pointer-events-none"></div>
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-blood-500/30 pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-blood-500/30 pointer-events-none"></div>
+                </div>
+
+                <div id="classroom-list" class="space-y-3">
+                    <!-- JSで生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 隠し文字 -->
+        <section class="py-8 text-center">
+            <p class="hidden-text text-transparent select-all cursor-default text-xs tracking-[0.5em]">たすけて</p>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-10 text-gray-700 text-[10px] tracking-[0.2em] mt-auto z-10 relative border-t border-gray-900 font-serif bg-black/60 backdrop-blur-sm">
+        <p class="glitch-hover cursor-default inline-block">この廊下は、どこまで続いているのだろう。</p>
+        <p class="mt-3 text-gray-800 font-mono">&copy; 2026 梅苑祭 ２年３組</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
